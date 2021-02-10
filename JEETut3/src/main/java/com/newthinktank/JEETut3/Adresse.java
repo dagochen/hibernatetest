@@ -2,6 +2,7 @@ package com.newthinktank.JEETut3;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -19,6 +20,7 @@ public class Adresse {
 	}
 
     @Id
+    @GeneratedValue
     @Column(name = "adressid")
     private int id;
 
@@ -30,5 +32,15 @@ public class Adresse {
 
     @Column(name = "plz")
     private int plz;
+
+	public String getStraße() {
+		// TODO Auto-generated method stub
+		return strasse;
+	}
+
+	public String getHausnummer() {
+		// TODO Auto-generated method stub
+		return hausnummer;
+	}
 
 }

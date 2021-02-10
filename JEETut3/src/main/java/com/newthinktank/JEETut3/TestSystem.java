@@ -15,13 +15,17 @@ public class TestSystem {
             .createEntityManagerFactory("JEETut3");
 
     public static void main(String[] args) {
-        final Adresse adresse = new Adresse("Hamburger Strasse", "1", 22083);
+        final Adresse adresse = new Adresse("ASDASD Strasse", "3", 233);
         Customer cust = new Customer();
-        cust.setID(1);
+       
         cust.setFName("Max");
         cust.setLName("Mustermann");
         cust.setAdresse(adresse);
         addCustomer(cust);
+        
+        Customer geladenerCustomer = getCustomer(1);
+        if (geladenerCustomer != null)
+        	System.out.println(geladenerCustomer.getFormatiertenString());
 
         System.out.println("----");
 
@@ -61,7 +65,7 @@ public class TestSystem {
         }
     }
 
-    public static void getCustomer(int id) {
+    public static Customer getCustomer(int id) {
         EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
 
         // the lowercase c refers to the object
@@ -77,11 +81,13 @@ public class TestSystem {
             // Get matching customer object and output
             cust = tq.getSingleResult();
             System.out.println(cust.getFName() + " " + cust.getLName());
+            return cust;
         } catch (NoResultException ex) {
             ex.printStackTrace();
         } finally {
             em.close();
         }
+		return null;
     }
 
     public static void getCustomers() {

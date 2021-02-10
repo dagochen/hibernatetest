@@ -28,7 +28,7 @@ mapped to database tables. Database driver, location, userid and pw
             <!-- Password -->
             <property name="javax.persistence.jdbc.password" value="turtledove" />
             
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 
             <!-- Creates tables on startup -->
             <!--<property name="hibernate.hbm2ddl.auto" value="create"/>-->

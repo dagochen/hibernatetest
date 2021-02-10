@@ -7,7 +7,10 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -33,7 +36,7 @@ public class Customer implements Serializable {
     // You can override the default column name
     // Map id to the CustID field in the DB
     // You can have it auto generate
-    // @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "custID", unique = true)
     private int id;
 
@@ -45,6 +48,7 @@ public class Customer implements Serializable {
 
     @Fetch(FetchMode.SELECT)
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "adressId")
     private Adresse adresse;
 
     public int getID() {
@@ -78,5 +82,10 @@ public class Customer implements Serializable {
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
     }
+
+	public String getFormatiertenString() {
+		
+		return String.format("Vorname: %s \nNachname: %s \nStraße: %s %s",fName, lName, adresse.getStraße(), adresse.getHausnummer());
+	}
 }
  
