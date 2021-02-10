@@ -1,17 +1,17 @@
 package com.newthinktank.JEETut3;
- 
-import java.io.Serializable;
- 
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
- 
+import java.io.Serializable;
+
 /*
  * 2. The Java Persistance API (JPA) makes it easy to use object data with
  * a database. With it you can Persist object data in a database. 
@@ -42,8 +42,9 @@ public class Customer implements Serializable {
  
     @Column(name = "lastName", nullable = false)
     private String lName;
-    
-    @Column(name = "adresse")
+
+    @Fetch(FetchMode.SELECT)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Adresse adresse;
     
     
@@ -72,10 +73,12 @@ public class Customer implements Serializable {
         this.lName = lName;
     }
 
-	public void setAdresse(Adresse adresse2) {
-		adresse = adresse2;
-		
-	}
-	
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
 }
  
