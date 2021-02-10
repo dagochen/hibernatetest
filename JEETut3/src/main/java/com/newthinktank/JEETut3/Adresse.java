@@ -9,29 +9,26 @@ import javax.persistence.Table;
 @Table(name = "adresse")
 public class Adresse {
 
-	public Adresse()
-	{
-		
-	}
-	
-	public Adresse(String string, String string2, int i) {
-		strasse = string;
-		hausnummer = string2;
-		plz = i;
+	public Adresse() {
 	}
 
-	@Id
-	@Column(name = "adressid")
-	private int id;
-	
-	@Column(name = "strasse")
-	private String strasse;
-	
-	@Column(name = "hausnummer")
-	private String hausnummer;
-	
-	@Column(name = "plz")
-	private int plz;
-	
-	
+	public Adresse(String strasse, String hausnummer, int plz) {
+		this.strasse = strasse;
+		this.hausnummer = hausnummer;
+		this.plz = plz;
+	}
+
+    @Id
+    @Column(name = "adressid")
+    private int id;
+
+    @Column(name = "strasse")
+    private String strasse;
+
+    @Column(name = "hausnummer")
+    private String hausnummer;
+
+    @Column(name = "plz")
+    private int plz;
+
 }
