@@ -42,7 +42,10 @@ public class TestSystem {
 
             // Create and set values for new customer
 
- 
+            // Save the adress object
+            if (cust.getAdresse() != null)
+                em.persist(cust.getAdresse());
+
             // Save the customer object
             em.persist(cust);
             et.commit();
